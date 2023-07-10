@@ -1,7 +1,9 @@
 <template>
+  <div>
   <Menu></Menu>    
   <router-view/> 
-  <FootN></FootN>
+  </div>
+  <Footer></Footer>
 </template>
 
 <style lang="scss">
@@ -16,7 +18,7 @@
 </style>
 <script>
 import Menu from '@/components/Menu.vue';
-import FootN from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 export default {
   name: 'App',
   data(){
@@ -27,7 +29,7 @@ export default {
     
   },
   components:{
-    Menu,FootN
+    Menu,Footer
   }
 }
 </script>

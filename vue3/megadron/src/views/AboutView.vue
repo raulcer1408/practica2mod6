@@ -1,6 +1,5 @@
 <template>
   <div class="about">
-    <h1>{{ appName }}</h1>
     <template v-for="(valor,index) in productos">
     <div class="container" v-if="index==0">
        <div class="row"> 

@@ -1,7 +1,6 @@
 <template>
     <div>
-        <footer :style="'background-color:'+footerColor">
-          <p>pie de pagina</p>    
+        <footer :style="'background-color:'+footerColor">   
         </footer>
     </div>
   </template>

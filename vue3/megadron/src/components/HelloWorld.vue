@@ -1,5 +1,7 @@
 <template>
   <div>
+    <H1>INTEGRANTES RAUL MANUEL CERVANTES</H1>
+    <H2>DIPLOMADO USIP FULLSTACK</H2>
   </div>
 </template>
 

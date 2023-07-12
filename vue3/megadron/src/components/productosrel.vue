@@ -75,7 +75,6 @@
   </template>
   
   <script>
-  import '@/components/popup.vue';
   const api=process.env.VUE_APP_API;
   export default {
     name: 'productosrel',

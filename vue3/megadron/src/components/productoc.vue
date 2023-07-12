@@ -45,9 +45,8 @@
         productos:[],
         pedido:
                {
-                id:null,
-                cantidad: 1,
-                color:null
+                
+                cantidad: 1,                
                }
       }
     },

@@ -1,38 +1,5 @@
 <template>
-  <div class="about">
-    <template v-for="(valor,index) in productos">
-    <div class="container" v-if="index==0">
-       <div class="row"> 
-       <h3>{{valor.nombre}}</h3> 
-      </div>
-       <div class="row">    
-        <div class="col-12 col-sm-6 col-md-4 ">
-        <img v-bind:src="valor.imagen" alt="" width="200">
-    </div>
-    <div class="col-12 col-sm-6  col-md-8">
-      <h6 v-html="valor.descripción"></h6>        
-        <div class="p-3 mb-2 text-white" :style="precioEstilos">
-            Precio: {{valor.precio}} BOB
-        </div>
-        <h5>Colores</h5>
-        <div>
-            <div v-for="color in valor.colores" class="color-box clic" v-bind:style="'background:'+color">
-            </div>
-        </div>
-        <h5>Cantidad</h5>
-        <div class="quantity">
-            <button v-on:click="pedido.cantidad-=1">-</button> <div>{{ pedido.cantidad }}</div> <button v-on:click="pedido.cantidad+=1">+</button>
-        </div>
-        <div class="buy-box">
-            <button v-on:click="" type="button" class="btn btn-primary" v-show="pedido.cantidad>=1">Comprar</button>
-        </div>
-        
-    </div>
-</div>
-</div>
-</template>
-  </div>
-
+  <productoc></productoc>  
   <div class="container ">
 
 <div class="row">
@@ -109,6 +76,7 @@
 </template>
 
 <script>
+import productoc from '@/components/productoc.vue';
 export default {
   name: 'About',
   data(){
@@ -119,12 +87,6 @@ export default {
       api,
       precioEstilos: "background: orangered; color: white; font-weight: bold",
       productos:[],
-      pedido:
-               {
-                id:null,
-                cantidad: 1,
-                color:null
-               }
     }
   },
   methods:{
@@ -144,6 +106,9 @@ export default {
     {
 
     }
+  },
+  components:{
+    productoc
   },
   mounted(){
     this.getProductos();

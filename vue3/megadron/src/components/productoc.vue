@@ -16,7 +16,7 @@
         </div>
         <h5>Colores</h5>
         <div>
-            <div v-for="color in valor.colores" class="color-box clic" v-bind:style="'background:'+color">
+            <div v-for="color in valor.colores" class="color-box clic" v-bind:style="'background:'+color" v-on:click="cambiovalor(valor.id,color)">
             </div>
         </div>
         <h5>Cantidad</h5>
@@ -24,7 +24,7 @@
             <button v-on:click="pedido.cantidad-=1">-</button> <div>{{ pedido.cantidad }}</div> <button v-on:click="pedido.cantidad+=1">+</button>
         </div>
         <div class="buy-box">
-            <button v-on:click="" type="button" class="btn btn-primary" v-show="pedido.cantidad>=1">Comprar</button>
+            <button v-on:click="mensajealert()" type="button" class="btn btn-primary" v-show="pedido.cantidad>=1">Comprar</button>
         </div>
         
     </div>
@@ -45,8 +45,9 @@
         productos:[],
         pedido:
                {
-                
-                cantidad: 1,                
+                id:null,      
+                cantidad: 1,
+                color:null                
                }
       }
     },
@@ -66,6 +67,21 @@
                 .catch((error) => { console.log(error) })
                 .finally(() => { });
       },
+      cambiovalor(id,colorv){
+         this.pedido.id=id;
+         this.pedido.color=colorv;
+         console.log(this.pedido.id);
+         console.log(this.pedido.color);
+      },
+      mensajealert(){
+        if(this.pedido.color==null)
+        {
+            alert("El color debe ser seleccionado para realizar una compra");
+        }else
+        {
+            alert("el pedido tiene los siguientes valores:"+JSON.stringify(this.pedido))
+        }
+      }
     },
     mounted() {
       this.getProductos();

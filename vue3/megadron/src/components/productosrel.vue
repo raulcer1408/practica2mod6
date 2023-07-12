@@ -11,8 +11,8 @@
                 <template v-for="(productoval, index) in productos" :key="index">
                     <div v-if="index==1">
                    <h5 class="card-title" v-if="productoval.nombre==='KF102'">{{productoval.nombre}}</h5>                                    
-                   <img v-bind:src="productoval.imagen" alt="" width="200">
-                   <p v-if="productoval.descripcion==='Dron plegable KF102 con Gps, 8K, cámara Dual HD, 2 ejes,cardán, Motor sin escobillas, fotografía aérea, 1200M de distancia, novedad de 2022'" class="card-text">{{productoval.descripcion}}</p>
+                   <img v-bind:src="productoval.imagen" alt="" width="200" v-on:click="caracteristicaproductorel(productoval.id)">
+                   <p v-show="productosid.id==2 && valfalse" class="card-text">{{productosid.descripcion}}</p>
                    <div v-if="productoval.precio==='1180'" class="producto-relacionado-precio">Precio:{{productoval.precio}}</div>
                    <template v-for="valor in productoval.colores">
                    <div v-if="index==1" class="color-box" :style="'background:'+valor"></div>
@@ -30,10 +30,10 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <template v-for="(productoval, index) in productos" :key="index">
-                <div v-if="index==2">
+                <div v-if="index==2" v-on:click="caracteristicaproductorel(productoval.id)">
                 <h5 class="card-title">{{productoval.nombre}}</h5>
                 <img v-bind:src="productoval.imagen" alt="" width="200">
-                <p  v-if="productoval.descripcion==='KBDFA-Dron E888 RC, cuadricóptero profesional FPV, 4K HD,fotografía aérea, evitación de obstáculos, helicóptero, juguetes de distancia'" class="card-text"> {{productoval.descripcion}}
+                <p v-show="productosid.id==3 && valfalse" class="card-text"> {{productosid.descripcion}}
                 </p>
                 <div v-if="productoval.precio==='154'" class="producto-relacionado-precio">Precio:{{productoval.precio}} BOB</div>
                 </div>
@@ -52,11 +52,11 @@
         <div class="card" style="width: 18rem;">
             <div class="card-body">
                 <template v-for="(productoval, index) in productos" :key="index">
-                 <div v-if="index==3">
+                 <div v-if="index==3" v-on:click="caracteristicaproductorel(productoval.id)">
                     <h5 class="card-title">{{productoval.nombre}}</h5> 
                     <img  :src="productoval.imagen" alt="" width="200">    
-                    <p v-if="productoval.descripcion==='Dron Profesional 4K con GPS, 8K, cámara HD, 3 ejes, cardánantivibración, evitación de obstáculos, fotografía aérea, Quadcopter, nuevo'" class="card-text">
-                        {{productoval.descripcion}}</p>
+                    <p v-show="productosid.id==4 && valfalse"  class="card-text">
+                        {{productosid.descripcion}}</p>
                         <div v-if="productoval.precio==='1800'" class="producto-relacionado-precio">Precio:{{productoval.precio}} BOB</div>
                 </div>     
                 <template v-for="(valor) in productoval.colores">
@@ -75,6 +75,7 @@
   </template>
   
   <script>
+  import '@/components/popup.vue';
   const api=process.env.VUE_APP_API;
   export default {
     name: 'productosrel',
@@ -83,6 +84,9 @@
         api,
         precioEstilos: "background: orangered; color: white; font-weight: bold",
         productos:[],
+        productosid:[],
+        idpopup:null,
+        valfalse:false,
      }
    },
     methods:{
@@ -98,6 +102,19 @@
                 .catch((error) => { console.log(error) })
                 .finally(() => { });
        },
+       caracteristicaproductorel(id){
+        this.axios({
+                method: 'get',
+                url:  this.api+'/Productos/'+id
+            })
+                .then((response) => {
+                    this.productosid = response.data;
+                    console.log(response);
+                    this.valfalse=!this.valfalse;
+                })
+                .catch((error) => { console.log(error) })
+                .finally(() => { });
+       }
     },
     mounted(){
         this.getProductos();

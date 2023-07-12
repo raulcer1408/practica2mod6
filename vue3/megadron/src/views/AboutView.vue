@@ -14,9 +14,14 @@ export default {
     return {
       appName,
       api,
+      idenviado:null,
     }
   },
-
+  methods:{
+    asignarvalor(id){
+       this.idenviado=id;
+    }
+  },
   components:{
     productoc,productosrel
   },

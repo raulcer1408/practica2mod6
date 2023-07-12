@@ -21,10 +21,10 @@
         </div>
         <h5>Cantidad</h5>
         <div class="quantity">
-            <button v-on:click="">-</button> <div>{{ pedido.cantidad }}</div> <button v-on:click="">+</button>
+            <button v-on:click="pedido.cantidad-=1">-</button> <div>{{ pedido.cantidad }}</div> <button v-on:click="pedido.cantidad+=1">+</button>
         </div>
         <div class="buy-box">
-            <button v-on:click="" type="button" class="btn btn-primary">Comprar</button>
+            <button v-on:click="" type="button" class="btn btn-primary" v-show="pedido.cantidad>=1">Comprar</button>
         </div>
         
     </div>
@@ -139,6 +139,10 @@ export default {
                 })
                 .catch((error) => { console.log(error) })
                 .finally(() => { });
+    },
+    cambiovalor(valid,valcolor)
+    {
+
     }
   },
   mounted(){
